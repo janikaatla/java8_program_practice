@@ -16,7 +16,8 @@ public class ListToMapGroupingTypes {
         List<Integer> integerList=List.of(1,3,2,4,1,3,4,5,2,1,4,1);
         Map<Integer, Long> mapValueCount=integerList.stream().collect(Collectors
                 .groupingBy(i->i,Collectors.counting()));
-        Map<Integer, Long> sortedMap = mapValueCount.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+        Map<Integer, Long> sortedMap = mapValueCount.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(oldValue, newValue)->oldValue, LinkedHashMap::new ));
 
         System.out.println(sortedMap);
@@ -25,15 +26,20 @@ public class ListToMapGroupingTypes {
     }
 
     public static void empListToMap() {
-        List<Emp> empList=List.of(new Emp("Uma", 1),new Emp("Jani", 2),
+        List<Emp> empList=List.of(new Emp("Uma", 3),new Emp("Uma", 1),new Emp("Jani", 2),
                 new Emp("Jani", 1),new Emp("Vishrudh", 2),new Emp("Moksha", 2));
 
         Map<Integer, Long> mapEmpCount =
                 empList.stream().collect(Collectors.groupingBy(Emp::getDep, Collectors.counting()));
 
-        Map<Integer, List<Emp>> mapEmp = empList.stream().collect(Collectors.groupingBy(Emp::getDep));
+        Map<Integer, List<Emp>> mapEmp = empList.stream().collect(Collectors.groupingBy(Emp::getDep, LinkedHashMap::new,Collectors.toList()));
 
-        Map<Integer, List<Emp>> finalRes=mapEmp.entrySet().stream().sorted(Map.Entry.comparingByKey())
+        Map<Integer, List<Emp>> finalRes=mapEmp.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(Map.Entry::getKey, e->e.getValue().stream().sorted(Comparator.comparing(Emp::getName)).toList(),(oldValue, newValue)->oldValue, LinkedHashMap::new));
+
+        System.out.println(finalRes);
+
+        finalRes=mapEmp.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(Map.Entry::getKey, e->e.getValue().stream().sorted(Comparator.comparing(Emp::getName)).toList(),(oldValue, newValue)->oldValue, LinkedHashMap::new));
 
         System.out.println(finalRes);

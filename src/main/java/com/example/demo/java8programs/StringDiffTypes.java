@@ -12,8 +12,8 @@ public class StringDiffTypes {
     public static void main(String[] args) {
         //wordReverseFromStrData();
         //strReverse();
-        // strToMap();
-        strToRemoveDuplicateChar();
+        strToMap();
+        // strToRemoveDuplicateChar();
 
     }
 
@@ -33,6 +33,12 @@ public class StringDiffTypes {
                 .filter(e->e.getValue()>1)
                 .skip(1).findFirst()
                 .ifPresent(e->System.out.println(e.getKey()));
+
+        Map.Entry<String, Long> s=res.entrySet().stream()
+                .filter(e->e.getValue()>1)
+                .skip(1).findFirst().orElse(null);
+        assert s != null;
+        // System.out.println(s.getKey());
     }
 
     public static void strToRemoveDuplicateChar() {
