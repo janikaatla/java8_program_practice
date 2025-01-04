@@ -8,6 +8,11 @@ import java.util.stream.Collectors;
 
 public class ListToMapGroupingTypes {
     public static void main(String[] arg) {
+        integerListToMap();
+        empListToMap();
+    }
+
+    public static void integerListToMap() {
         List<Integer> integerList=List.of(1,3,2,4,1,3,4,5,2,1,4,1);
         Map<Integer, Long> mapValueCount=integerList.stream().collect(Collectors
                 .groupingBy(i->i,Collectors.counting()));
@@ -17,7 +22,9 @@ public class ListToMapGroupingTypes {
         System.out.println(sortedMap);
         Map<Integer, List<Integer>> mapValues = integerList.stream().collect(Collectors.groupingBy(e -> e, Collectors.toList()));
         System.out.println(mapValues);
+    }
 
+    public static void empListToMap() {
         List<Emp> empList=List.of(new Emp("Uma", 1),new Emp("Jani", 2),
                 new Emp("Jani", 1),new Emp("Vishrudh", 2),new Emp("Moksha", 2));
 
@@ -30,8 +37,6 @@ public class ListToMapGroupingTypes {
                 .collect(Collectors.toMap(Map.Entry::getKey, e->e.getValue().stream().sorted(Comparator.comparing(Emp::getName)).toList(),(oldValue, newValue)->oldValue, LinkedHashMap::new));
 
         System.out.println(finalRes);
-
-
     }
 }
 
