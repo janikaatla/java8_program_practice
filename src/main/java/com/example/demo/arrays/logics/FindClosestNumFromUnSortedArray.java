@@ -1,6 +1,7 @@
 package com.example.demo.arrays.logics;
 
 import com.example.demo.util.CommonUtil;
+import com.example.demo.util.Pair;
 
 public class FindClosestNumFromUnSortedArray {
     public static void main(String[] args) {

@@ -1,8 +1,7 @@
-package com.example.demo.arrays.logics;
+package com.example.demo.util;
 
 public class Pair<K, V> {
     K key;
-
     V value;
 
     public Pair() {
@@ -11,6 +10,10 @@ public class Pair<K, V> {
     public Pair(K key, V value) {
         this.key = key;
         this.value = value;
+    }
+
+    public Pair(K key) {
+        this.key = key;
     }
 
     public K getKey() {

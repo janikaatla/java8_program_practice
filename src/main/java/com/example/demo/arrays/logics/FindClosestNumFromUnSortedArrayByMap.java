@@ -15,7 +15,7 @@ public class FindClosestNumFromUnSortedArrayByMap {
 
     public static void printClosest(int[] arr, int n, int x) {
         // Make a max heap.
-        Map<Integer, Integer> pq=new LinkedHashMap<>(1);
+        LinkedHashMap<Integer, Integer> pq=new LinkedHashMap<>(1);
         pq.put(arr[0], Math.abs(arr[0] - x));
         for (int i = 1; i < n; i++) {
             int diff = Math.abs(arr[i] - x);
