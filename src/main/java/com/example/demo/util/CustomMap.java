@@ -108,8 +108,10 @@ public class CustomMap<K, V> {
         } else {
             newCap = DEFAULT_INITIAL_CAPACITY;
         }
+        Node<K,V>[] newTab = new Node[newCap];
+        table = newTab;
 
-        return null;
+        return newTab;
     }
 
 }
